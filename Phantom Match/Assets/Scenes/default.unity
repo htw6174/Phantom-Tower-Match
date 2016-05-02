@@ -245,14 +245,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 427883969}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a94f72e89b118cf4eb87416c1c980f17, type: 3}
+  m_Script: {fileID: 11500000, guid: 8822186a41fb52d44be0662dbea33856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   width: 6
   height: 8
   blockSize: 1
   blockSpeed: 12
-  blockVanishTime: 0.5
+  blockVanishTime: 0.3
   blockColliderPrefab: {fileID: 139432, guid: e0ea99b57e2d4ab43820fa6bb2b119ed, type: 2}
   blockPrefabs:
   - {fileID: 132778, guid: d92e87f6c41591d40b649dd98961483d, type: 2}

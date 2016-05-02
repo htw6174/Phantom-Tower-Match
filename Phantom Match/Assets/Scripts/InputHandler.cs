@@ -5,7 +5,7 @@ public class InputHandler : MonoBehaviour {
 
     public Vector3 mouseWorldPosition;
 
-    public BlockGrid gridController;
+    public GridController gridController;
 
     void Update()
     {
