@@ -31,7 +31,7 @@ public class GridController : MonoBehaviour
     public GameObject blockColliderPrefab;
     public GameObject[] blockPrefabs;
 
-    public Block defaultBlock;
+    public ScoreTracker scoreTracker;
 
     private Vector3[,] blockPositions;
 
@@ -176,6 +176,7 @@ public class GridController : MonoBehaviour
         Block temp = GetBlock(x1, y1);
         MoveBlockTo(GetBlock(x2, y2), x1, y1);
         MoveBlockTo(temp, x2, y2);
+        scoreTracker.AddToMoveCount();
         DeselectBlock();
     }
 
@@ -283,6 +284,7 @@ public class GridController : MonoBehaviour
 
         if (verticalLength >= 3 || horizontalLength >= 3)
         {
+            scoreTracker.AddBlockScore(horizontalLength, verticalLength, type);
             Debug.Log(type + " was part of a " + verticalLength + "x" + horizontalLength + " match!");
             return true;
         }

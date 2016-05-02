@@ -1,8 +1,8 @@
 ﻿public enum BlockType
 {
     None,
-    Red,
-    Green,
-    Yellow,
-    Blue
+    Fire,
+    Bubble,
+    Lightning,
+    Ice
 }
