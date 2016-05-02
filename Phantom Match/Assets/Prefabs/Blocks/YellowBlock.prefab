@@ -44,6 +44,7 @@ MonoBehaviour:
     x: 0
     y: 0
   type: 3
+  inMotion: 0
 --- !u!212 &21296024
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -70,8 +71,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fb058c1451733d949af493a52a8f1608, type: 3}
-  m_Color: {r: 1, g: 1, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 51139e8bb3ab55a43890a3b51ca14aba, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
 --- !u!1001 &100100000

@@ -250,7 +250,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 6
   height: 8
-  blockSize: 1.05
+  blockSize: 1
   blockSpeed: 12
   blockVanishSpeed: 3
   blockColliderPrefab: {fileID: 139432, guid: e0ea99b57e2d4ab43820fa6bb2b119ed, type: 2}
@@ -513,13 +513,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 415274, guid: 62b6052b7d8ee60478cba1026e91ac49, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 415274, guid: 62b6052b7d8ee60478cba1026e91ac49, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
+    - target: {fileID: 142500, guid: 62b6052b7d8ee60478cba1026e91ac49, type: 2}
+      propertyPath: m_Name
+      value: LightningBlock
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 62b6052b7d8ee60478cba1026e91ac49, type: 2}
@@ -624,6 +620,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 132778, guid: d92e87f6c41591d40b649dd98961483d, type: 2}
+      propertyPath: m_Name
+      value: IceBlock
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d92e87f6c41591d40b649dd98961483d, type: 2}
   m_IsPrefabParent: 0
@@ -726,6 +726,10 @@ Prefab:
     - target: {fileID: 422998, guid: ef25f983f22aa5742b6a10f5a1d64794, type: 2}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 150420, guid: ef25f983f22aa5742b6a10f5a1d64794, type: 2}
+      propertyPath: m_Name
+      value: BubbleBlock
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef25f983f22aa5742b6a10f5a1d64794, type: 2}
@@ -854,6 +858,10 @@ Prefab:
     - target: {fileID: 407704, guid: 6a0b2c170e6cbab4389f7941c2ef63e0, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 192724, guid: 6a0b2c170e6cbab4389f7941c2ef63e0, type: 2}
+      propertyPath: m_Name
+      value: FireBlock
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6a0b2c170e6cbab4389f7941c2ef63e0, type: 2}
