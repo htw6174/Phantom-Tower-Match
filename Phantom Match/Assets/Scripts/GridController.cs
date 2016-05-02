@@ -312,8 +312,7 @@ public class GridController : MonoBehaviour
     private void SpawnBlock(int x, int y, int rise)
     {
         Block newBlock = RandomBlockInstance();
-        newBlock.transform.position = blockPositions[x, height + rise - 1];
-        //Debug.Log(newBlock.transform.position.y);
+        newBlock.transform.localPosition = blockPositions[x, height + rise - 1];
         MoveBlockTo(newBlock, x, y, true);
     }
 
@@ -339,8 +338,8 @@ public class GridController : MonoBehaviour
         {
             for (int y = 0; y < height; y++)
             {
-                GetBlock(x, y).transform.position = blockPositions[x, y];
-                colliderGrid.GetBlock(x, y).transform.position = blockPositions[x, y];
+                GetBlock(x, y).transform.localPosition = blockPositions[x, y];
+                colliderGrid.GetBlock(x, y).transform.localPosition = blockPositions[x, y];
             }
         }
     }
@@ -365,15 +364,24 @@ public class GridController : MonoBehaviour
         {
             for (int y = 0; y < height; y++)
             {
-                Block newCollider = Instantiate(blockColliderPrefab).GetComponent<Block>();
+                Block newCollider = ColliderInstance();
                 newCollider.SetPosition(x, y);
                 colliderGrid.SetBlock(x, y, newCollider);
             }
         }
     }
 
+    private Block ColliderInstance()
+    {
+        Block newCollider = Instantiate(blockColliderPrefab).GetComponent<Block>();
+        newCollider.transform.SetParent(transform);
+        return newCollider;
+    }
+
     private Block RandomBlockInstance()
     {
-        return Instantiate(blockPrefabs[Random.Range(0, blockPrefabs.Length)]).GetComponent<Block>();
+        Block newBlock = Instantiate(blockPrefabs[Random.Range(0, blockPrefabs.Length)]).GetComponent<Block>();
+        newBlock.transform.SetParent(transform);
+        return newBlock;
     }
 }

@@ -31,15 +31,15 @@ public class Block : MonoBehaviour {
 
         yield return fallDelay;
 
-        Vector3 startPosition = transform.position;
+        Vector3 startPosition = transform.localPosition;
         float distance = Vector3.Distance(startPosition, newPosition);
         int steps = (int)(distance * (60f / speed));
         for (int i = 0; i < steps; i++)
         {
-            transform.position = Vector3.Lerp(startPosition, newPosition, (float)i / steps);
+            transform.localPosition = Vector3.Lerp(startPosition, newPosition, (float)i / steps);
             yield return frameDelay;
         }
-        transform.position = newPosition;
+        transform.localPosition = newPosition;
 
         inMotion = false;
     }
