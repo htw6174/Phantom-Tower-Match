@@ -418,7 +418,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 508586239}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -545,7 +545,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 415274, guid: 62b6052b7d8ee60478cba1026e91ac49, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 6.95
+      value: 8.92
       objectReference: {fileID: 0}
     - target: {fileID: 415274, guid: 62b6052b7d8ee60478cba1026e91ac49, type: 2}
       propertyPath: m_LocalPosition.z
@@ -631,7 +631,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 820548104}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -724,15 +724,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 672e8887c44b56f4ba57dce59fde1938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moves: 0
   matchesOf3: 0
   matchesOf4: 0
   matchesOf5: 0
   matchesOf6: 0
   matchesOf7: 0
+  blocksInMatch3: 0
+  blocksInMatch4: 0
+  blocksInMatch5: 0
+  blocksInMatch6: 0
+  blocksInMatch7: 0
   fireBlocksMatched: 0
   iceBlocksMatched: 0
   bubbleBlocksMatched: 0
   lightningBlocksMatched: 0
+  totalDroppedBlocks: 0
 --- !u!4 &826268118
 Transform:
   m_ObjectHideFlags: 0
@@ -758,7 +765,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 483962, guid: d92e87f6c41591d40b649dd98961483d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 6.94
+      value: 8.92
       objectReference: {fileID: 0}
     - target: {fileID: 483962, guid: d92e87f6c41591d40b649dd98961483d, type: 2}
       propertyPath: m_LocalPosition.z
@@ -865,7 +872,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 422998, guid: ef25f983f22aa5742b6a10f5a1d64794, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 6.99
+      value: 8.92
       objectReference: {fileID: 0}
     - target: {fileID: 422998, guid: ef25f983f22aa5742b6a10f5a1d64794, type: 2}
       propertyPath: m_LocalPosition.z
@@ -951,7 +958,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1519603199}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -968,6 +975,7 @@ GameObject:
   - 92: {fileID: 1718887612}
   - 124: {fileID: 1718887611}
   - 81: {fileID: 1718887610}
+  - 114: {fileID: 1718887615}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1042,6 +1050,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &1718887615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1718887609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaa07e53b4d2dba4e9815e988a4910bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayCameraEffects: 1
+  effectMaterial: {fileID: 2100000, guid: 000a26f699caaee40a4b62239748d08b, type: 2}
 --- !u!1001 &1729009254
 Prefab:
   m_ObjectHideFlags: 0
@@ -1055,7 +1076,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 407704, guid: 6a0b2c170e6cbab4389f7941c2ef63e0, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 6.96
+      value: 8.92
       objectReference: {fileID: 0}
     - target: {fileID: 407704, guid: 6a0b2c170e6cbab4389f7941c2ef63e0, type: 2}
       propertyPath: m_LocalPosition.z
