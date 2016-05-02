@@ -9,7 +9,7 @@ public class BlockGrid : MonoBehaviour {
     public float blockSize;
 
     public float blockSpeed = 12f;
-    public float blockVanishSpeed = 4f;
+    public float blockVanishTime = 0.3f;
 
     public GameObject blockColliderPrefab;
     public GameObject[] blockPrefabs;
@@ -228,7 +228,7 @@ public class BlockGrid : MonoBehaviour {
     private void MoveBlockTo(Block block, int x, int y, bool delayMotion = false)
     {
         block.SetPosition(x, y);
-        StartCoroutine(block.MoveBlock(blockPositions[x, y], blockSpeed, delayMotion ? 1f / blockVanishSpeed : 0f));
+        StartCoroutine(block.MoveBlock(blockPositions[x, y], blockSpeed, delayMotion ? blockVanishTime : 0f));
         SetBlock(x, y, block);
         Debug.Log("Block at " + x + ", " + y + " has been set to " + block.name);
     }
@@ -278,7 +278,7 @@ public class BlockGrid : MonoBehaviour {
                 if (matchedBlocks[x, y] != null)
                 {
                     //Destroy block and incerease null block counter
-                    matchedBlocks[x, y].DestroyBlock(blockVanishSpeed);
+                    matchedBlocks[x, y].DestroyBlock(blockVanishTime);
                     nullCount++;
                 }
                 else

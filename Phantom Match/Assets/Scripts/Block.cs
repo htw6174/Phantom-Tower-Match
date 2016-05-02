@@ -44,18 +44,18 @@ public class Block : MonoBehaviour {
         inMotion = false;
     }
 
-    public void DestroyBlock(float speed = 1f)
+    public void DestroyBlock(float time = 1f)
     {
-        StartCoroutine(ShrinkBlock(speed));
-        Destroy(gameObject, 1f / speed);
+        StartCoroutine(ShrinkBlock(time));
+        Destroy(gameObject, time);
     }
 
-    private IEnumerator ShrinkBlock(float speed)
+    private IEnumerator ShrinkBlock(float time)
     {
         //WaitForSeconds frameDelay = new WaitForSeconds(1f / 60f);
         //int steps = (int)(60f / speed);
-        WaitForSeconds stepTime = new WaitForSeconds(speed / 10f);
-        int steps = 10;
+        WaitForSeconds stepTime = new WaitForSeconds(time / 4f);
+        int steps = 4;
         for (int i = 0; i < steps; i++)
         {
             transform.localScale = Vector3.one * (1f - ((float)i / steps));
