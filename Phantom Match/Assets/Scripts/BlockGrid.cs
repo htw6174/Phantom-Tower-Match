@@ -60,10 +60,14 @@ public class BlockGrid : MonoBehaviour {
     /// <param name="x">Horizontal postion</param>
     /// <param name="y">Vertical position</param>
     /// <returns></returns>
-    public Block GetBlock(int x, int y)
+    public Block GetBlock(int x, int y, bool logError = false)
     {
         if (x < 0 || y < 0 || x > width - 1 || y > height - 1)
         {
+            if (logError)
+            {
+                Debug.Log("Tried to select block at " + x + ", " + y + ", which is outside of the grid!");
+            }
             return null;
         }
         else
@@ -81,11 +85,14 @@ public class BlockGrid : MonoBehaviour {
     /// <param name="y"></param>
     /// <param name="newBlock"></param>
     /// <returns></returns>
-    public bool SetBlock(int x, int y, Block newBlock)
+    public bool SetBlock(int x, int y, Block newBlock, bool logError = false)
     {
         if (x < 0 || y < 0 || x > width - 1 || y > height - 1)
         {
-            Debug.Log("Tried to assign block to space outside the grid!", newBlock.gameObject);
+            if (logError)
+            {
+                Debug.Log("Tried to set block at " + x + ", " + y + ", which is outside of the grid!");
+            }
             return false;
         }
         else
@@ -107,7 +114,7 @@ public class BlockGrid : MonoBehaviour {
         GridPosition colPos = BlockUnderPointer(position);
         if (colPos != null)
         {
-            selected = blocks[colPos.x, colPos.y];
+            selected = GetBlock(colPos.x, colPos.y);
             selected.transform.localScale = Vector3.one * 0.8f;
         }
     }
@@ -281,6 +288,7 @@ public class BlockGrid : MonoBehaviour {
             for (int y = 0; y < nullCount; y++)
             {
                 SpawnBlock(x, height - y - 1, heightAbove);
+                //Debug.Log(heightAbove);
                 heightAbove--;
             }
         }
@@ -334,6 +342,7 @@ public class BlockGrid : MonoBehaviour {
     {
         Block newBlock = RandomBlockInstance();
         newBlock.transform.position = blockPositions[x, height + rise - 1];
+        //Debug.Log(newBlock.transform.position.y);
         MoveBlockTo(newBlock, x, y, true);
     }
 
@@ -373,7 +382,7 @@ public class BlockGrid : MonoBehaviour {
             for (int y = 0; y < height * 2; y++)
             {
                 float newX = Mathf.Lerp(-BoardWidth / 2f, BoardWidth / 2f, x / (float)(width - 1));
-                float newY = Mathf.Lerp(-BoardHeight / 2f, (BoardHeight / 2f) + BoardHeight, y / (float)(heightTimes2 - 2));
+                float newY = Mathf.Lerp(-BoardHeight / 2f, (BoardHeight / 2f) + BoardHeight + blockSize, y / (float)(heightTimes2 - 1));
                 newPositions[x, y] = new Vector3(newX, newY, 0f);
             }
         }
