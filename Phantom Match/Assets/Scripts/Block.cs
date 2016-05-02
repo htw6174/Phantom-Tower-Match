@@ -52,12 +52,14 @@ public class Block : MonoBehaviour {
 
     private IEnumerator ShrinkBlock(float speed)
     {
-        WaitForSeconds frameDelay = new WaitForSeconds(1f / 60f);
-        int steps = (int)(60f / speed);
+        //WaitForSeconds frameDelay = new WaitForSeconds(1f / 60f);
+        //int steps = (int)(60f / speed);
+        WaitForSeconds stepTime = new WaitForSeconds(speed / 10f);
+        int steps = 10;
         for (int i = 0; i < steps; i++)
         {
-            transform.localScale = Vector3.one * (0.5f - ((float)i / steps));
-            yield return frameDelay;
+            transform.localScale = Vector3.one * (1f - ((float)i / steps));
+            yield return stepTime;
         }
     }
 }
