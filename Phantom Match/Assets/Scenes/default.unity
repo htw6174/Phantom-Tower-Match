@@ -248,8 +248,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a94f72e89b118cf4eb87416c1c980f17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 3
-  height: 3
+  width: 6
+  height: 8
   blockSize: 1.05
   blockSpeed: 12
   blockVanishSpeed: 3

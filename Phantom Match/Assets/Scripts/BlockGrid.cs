@@ -111,11 +111,14 @@ public class BlockGrid : MonoBehaviour {
 
     public void SelectBlock(Vector3 position)
     {
-        GridPosition colPos = BlockUnderPointer(position);
-        if (colPos != null)
+        if (CheckForStaticBoard())
         {
-            selected = GetBlock(colPos.x, colPos.y);
-            selected.transform.localScale = Vector3.one * 0.8f;
+            GridPosition colPos = BlockUnderPointer(position);
+            if (colPos != null)
+            {
+                selected = GetBlock(colPos.x, colPos.y);
+                selected.transform.localScale = Vector3.one * 0.8f;
+            }
         }
     }
 
@@ -227,6 +230,7 @@ public class BlockGrid : MonoBehaviour {
         block.SetPosition(x, y);
         StartCoroutine(block.MoveBlock(blockPositions[x, y], blockSpeed, delayMotion ? 1f / blockVanishSpeed : 0f));
         SetBlock(x, y, block);
+        Debug.Log("Block at " + x + ", " + y + " has been set to " + block.name);
     }
 
     private bool CheckForStaticBoard()
@@ -265,6 +269,7 @@ public class BlockGrid : MonoBehaviour {
             }
         }
 
+        //Cycle through blocks list and destory, move, or ignore each block
         for (int x = 0; x < width; x++)
         {
             int nullCount = 0;
@@ -278,8 +283,12 @@ public class BlockGrid : MonoBehaviour {
                 }
                 else
                 {
-                    //Cause block in position to fall to lowest available space
-                    MoveBlockTo(GetBlock(x, y), x, y - nullCount, true);
+                    //If there are null blocks below this one
+                    if(nullCount > 0)
+                    {
+                        //Cause block in position to fall to lowest available space
+                        MoveBlockTo(GetBlock(x, y), x, y - nullCount, true);
+                    }
                 }
             }
 
