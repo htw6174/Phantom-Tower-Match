@@ -38,6 +38,13 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
+          name: _BlurTex
+        second:
+          m_Texture: {fileID: 2800000, guid: e010ec9fae4d5a442949d08b58983fb7, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
           name: _ParallaxMap
         second:
           m_Texture: {fileID: 0}
@@ -71,20 +78,6 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _MetallicGlossMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _BlurTex
-        second:
-          m_Texture: {fileID: 2800000, guid: e29409a5108c36c44938c3a55f03a2d3, type: 3}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
@@ -98,6 +91,18 @@ Material:
         first:
           name: _Cutoff
         second: 0.5
+      data:
+        first:
+          name: _Magnitude
+        second: 0.8
+      data:
+        first:
+          name: _BlurSpeed
+        second: 0.37
+      data:
+        first:
+          name: _TintSpeed
+        second: 1.6
       data:
         first:
           name: _Parallax
