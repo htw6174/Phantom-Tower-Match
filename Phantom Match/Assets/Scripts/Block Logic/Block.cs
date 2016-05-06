@@ -7,8 +7,15 @@ public class Block : MonoBehaviour {
 
     public BlockType type;
 
+    private Animator animator;
+
     //this is being set to the opposite of what it should be for some reason, need to fix dat shit
     public bool inMotion = false;
+
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     public void SetPosition(int newX, int newY)
     {
@@ -46,7 +53,8 @@ public class Block : MonoBehaviour {
 
     public void DestroyBlock(float time = 1f, int steps = 4)
     {
-        StartCoroutine(ShrinkBlock(time, steps));
+        animator.SetBool("Match", true);
+        //StartCoroutine(ShrinkBlock(time, steps));
         Destroy(gameObject, time);
     }
 

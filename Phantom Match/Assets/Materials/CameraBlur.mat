@@ -141,7 +141,7 @@ Material:
       data:
         first:
           name: _Magnitude
-        second: 0.015
+        second: 0.008
       data:
         first:
           name: _BlurSpeed
@@ -162,4 +162,4 @@ Material:
       data:
         first:
           name: _Tint
-        second: {r: 0.472, g: 0, b: 0.747, a: 0.39215687}
+        second: {r: 0.472, g: 0, b: 0.747, a: 0}
