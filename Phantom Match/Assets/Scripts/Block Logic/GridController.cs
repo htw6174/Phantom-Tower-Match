@@ -193,7 +193,7 @@ public class GridController : MonoBehaviour
         block.SetPosition(x, y);
         StartCoroutine(block.MoveBlock(blockPositions[x, y], blockSpeed, delayMotion ? blockVanishTime : 0f));
         SetBlock(x, y, block);
-        Debug.Log("Block at " + x + ", " + y + " has been set to " + block.name);
+        //Debug.Log("Block at " + x + ", " + y + " has been set to " + block.name);
     }
 
     private bool CheckForStaticBoard()
@@ -285,7 +285,7 @@ public class GridController : MonoBehaviour
         if (verticalLength >= 3 || horizontalLength >= 3)
         {
             scoreTracker.AddBlockScore(horizontalLength, verticalLength, type);
-            Debug.Log(type + " was part of a " + verticalLength + "x" + horizontalLength + " match!");
+            //Debug.Log(type + " was part of a " + verticalLength + "x" + horizontalLength + " match!");
             return true;
         }
         else return false;

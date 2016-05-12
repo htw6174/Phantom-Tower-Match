@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class ScoreTracker : MonoBehaviour {
@@ -23,6 +24,12 @@ public class ScoreTracker : MonoBehaviour {
     public int lightningBlocksMatched;
 
     public int totalDroppedBlocks = 0;
+
+    public Text fireCount;
+    public Text bubbleCount;
+    public Text iceCount;
+    public Text lightningCount;
+    public Text matchCount;
 
     public void AddToMoveCount()
     {
@@ -105,5 +112,16 @@ public class ScoreTracker : MonoBehaviour {
         droppedBlocks += blocksInMatch7 % 7;
 
         totalDroppedBlocks = droppedBlocks;
+
+        UpdateScoreDisplay();
+    }
+
+    private void UpdateScoreDisplay()
+    {
+        fireCount.text = fireBlocksMatched.ToString();
+        bubbleCount.text = bubbleBlocksMatched.ToString();
+        iceCount.text = iceBlocksMatched.ToString();
+        lightningCount.text = lightningBlocksMatched.ToString();
+        matchCount.text = (matchesOf3 + matchesOf4 + matchesOf5 + matchesOf6 + matchesOf7).ToString();
     }
 }
