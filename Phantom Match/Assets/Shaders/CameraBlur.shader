@@ -36,7 +36,7 @@
 
 			sampler2D _MainTex;
 			sampler2D _BlurTex;
-			float _Magnitude;
+			uniform float _GlobalMagnitude;
 			float _BlurSpeed;
 			float4 _MainTex_ST;
 			float4 _Tint;
@@ -54,7 +54,7 @@
 			{
 				// sample the texture
 				float2 displacement = tex2D(_BlurTex, i.uv + (_Time.y * _BlurSpeed)).xy;
-				displacement = ((displacement * 2) - 1) * _Magnitude;
+				displacement = ((displacement * 2) - 1) * _GlobalMagnitude;
 
 				fixed4 col = tex2D(_MainTex, i.uv + displacement);
 

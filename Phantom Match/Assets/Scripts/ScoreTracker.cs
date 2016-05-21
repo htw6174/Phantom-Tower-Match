@@ -31,6 +31,11 @@ public class ScoreTracker : MonoBehaviour {
     public Text lightningCount;
     public Text matchCount;
 
+    void Start()
+    {
+        UpdateScoreDisplay();
+    }
+
     public void AddToMoveCount()
     {
         moves++;

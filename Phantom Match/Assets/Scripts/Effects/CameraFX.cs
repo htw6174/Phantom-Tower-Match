@@ -8,13 +8,14 @@ public class CameraFX : MonoBehaviour {
 
     public Material material;
 
-    public CameraFX secondaryFX;
+    [SerializeField]
+    [Range(0f, 0.1f)]
+    private float _blurMagnitude;
 
-    //public bool waveEffect = false;
-    //public bool vaporEffect = false;
-
-    //public Material waveMaterial;
-    //public Material vaporMaterial;
+    void Update()
+    {
+        Shader.SetGlobalFloat("_GlobalMagnitude", _blurMagnitude);
+    }
 
     void OnRenderImage(RenderTexture src, RenderTexture dst)
     {
@@ -26,30 +27,15 @@ public class CameraFX : MonoBehaviour {
         {
             Graphics.Blit(src, dst);
         }
+    }
 
-        //if (waveEffect && vaporEffect)
-        //{
-        //    RenderTexture temp = new RenderTexture(src.width, src.height, src.depth, src.format);
-        //    Graphics.Blit(src, temp, waveMaterial);
-        //    Graphics.Blit(temp, dst, vaporMaterial);
-        //}
-        //else if (waveEffect)
-        //{
-        //    Graphics.Blit(src, dst, waveMaterial);
-        //}
-        //else if (vaporEffect)
-        //{
-        //    Graphics.Blit(src, dst, vaporMaterial);
-        //}
-        //else
-        //{
-        //    Graphics.Blit(src, dst);
-        //}
+    public void UpdateBlurMagnitude(float newMagnitude)
+    {
+        _blurMagnitude = newMagnitude;
     }
 
     public void ToggleEnabled()
     {
         effectsEnabled = !effectsEnabled;
-        secondaryFX.effectsEnabled = effectsEnabled;
     }
 }
