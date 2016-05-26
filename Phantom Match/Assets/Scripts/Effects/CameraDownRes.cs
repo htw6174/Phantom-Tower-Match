@@ -12,12 +12,6 @@ public class CameraDownRes : MonoBehaviour {
     [Range(0, 15)]
     private int _bitsShifted;
 
-    void Start()
-    {
-        Debug.Log(1920 >> _bitsShifted);
-        Debug.Log(1080 >> _bitsShifted);
-    }
-
     void Update()
     {
         Shader.SetGlobalFloat("_Iters", _bitsShifted);

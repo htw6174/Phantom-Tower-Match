@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GridController : MonoBehaviour
 {
-
+    public EncounterManager encounter;
     public int width;
     public int height;
 
@@ -42,6 +42,7 @@ public class GridController : MonoBehaviour
 
     void Start()
     {
+        encounter = GameObject.FindGameObjectWithTag(Tags.encounterManager).GetComponent<EncounterManager>();
         FillBlockGrid();
         FillColliderGrid();
         FillBlockPositions();
@@ -50,9 +51,21 @@ public class GridController : MonoBehaviour
 
     void Update()
     {
-        if (selected == null && CheckForStaticBoard())
+        CheckForTurnEnd();
+    }
+
+    private void CheckForTurnEnd()
+    {
+        if (encounter.turnInProgress && CheckForStaticBoard())
         {
-            CheckMatches();
+            if (CheckMatches())
+            {
+                return;
+            }
+            else
+            {
+                encounter.TurnHasEnded();
+            }
         }
     }
 
@@ -177,6 +190,7 @@ public class GridController : MonoBehaviour
         MoveBlockTo(GetBlock(x2, y2), x1, y1);
         MoveBlockTo(temp, x2, y2);
         scoreTracker.AddToMoveCount();
+        encounter.TurnHasStarted();
         DeselectBlock();
     }
 
@@ -215,10 +229,11 @@ public class GridController : MonoBehaviour
     }
 
     /// <summary>
-    /// Loop through each block in the grid and run CheckMatch() on it
+    /// Loop through each block in the grid and run CheckMatch() on it; returns true if any matches are found
     /// </summary>
-    private void CheckMatches()
+    private bool CheckMatches()
     {
+        bool matches = false;
         //Partially fill matchedBlocks list using blocks that are part of a valid match
         Block[,] matchedBlocks = new Block[width, height];
         for (int x = 0; x < width; x++)
@@ -227,6 +242,7 @@ public class GridController : MonoBehaviour
             {
                 if (CheckMatch(x, y))
                 {
+                    matches = true;
                     matchedBlocks[x, y] = GetBlock(x, y);
                 }
             }
@@ -264,6 +280,7 @@ public class GridController : MonoBehaviour
                 heightAbove--;
             }
         }
+        return matches;
     }
 
     /// <summary>

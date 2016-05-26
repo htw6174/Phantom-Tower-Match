@@ -19,7 +19,7 @@ public class CameraFX : MonoBehaviour {
 
     void OnRenderImage(RenderTexture src, RenderTexture dst)
     {
-        if (effectsEnabled && material != null)
+        if (effectsEnabled && material != null && _blurMagnitude != 0)
         {
             Graphics.Blit(src, dst, material);
         }
