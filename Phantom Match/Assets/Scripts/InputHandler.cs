@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
-public class InputHandler : MonoBehaviour {
+public class InputHandler : MonoBehaviour
+{
 
     public Vector3 mouseWorldPosition;
 
@@ -10,6 +11,7 @@ public class InputHandler : MonoBehaviour {
     void Update()
     {
         CheckClicks();
+        CheckHardwareKeys();
     }
 
     public Vector3 GetMouseWorldPosition()
@@ -31,5 +33,14 @@ public class InputHandler : MonoBehaviour {
         {
             gridController.DeselectBlock();
         }
+    }
+    private void CheckHardwareKeys()
+    {
+        
+        if (Input.GetButton("Cancel"))
+        {
+            Debug.Log("Escape Pressed");
+        }
+        
     }
 }
