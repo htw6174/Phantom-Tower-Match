@@ -4,6 +4,8 @@ using System.Collections;
 
 public class ScoreTracker : MonoBehaviour {
 
+    public EncounterManager encounter;
+
     public int moves;
 
     public int matchesOf3;
@@ -33,6 +35,7 @@ public class ScoreTracker : MonoBehaviour {
 
     void Start()
     {
+        encounter = GameObject.FindGameObjectWithTag(Tags.encounterManager).GetComponent<EncounterManager>();
         UpdateScoreDisplay();
     }
 

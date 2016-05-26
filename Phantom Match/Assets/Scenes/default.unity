@@ -215,11 +215,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 405312, guid: 055d97b13859a6d43bd7f55bef84a44c, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 6.063104
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 405312, guid: 055d97b13859a6d43bd7f55bef84a44c, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -5.915926
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 405312, guid: 055d97b13859a6d43bd7f55bef84a44c, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1534,6 +1534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 672e8887c44b56f4ba57dce59fde1938, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  encounter: {fileID: 0}
   moves: 0
   matchesOf3: 0
   matchesOf4: 0
