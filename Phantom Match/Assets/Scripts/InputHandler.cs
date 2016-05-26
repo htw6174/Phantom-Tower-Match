@@ -36,11 +36,13 @@ public class InputHandler : MonoBehaviour
     }
     private void CheckHardwareKeys()
     {
-        
+
+        /*
         if (Input.GetButton("Cancel"))
         {
             Debug.Log("Escape Pressed");
         }
-        
+        */
+
     }
 }
