@@ -83,7 +83,7 @@ public class UIHandler : MonoBehaviour {
 	{
 		if (activeMenus.Count == 0 || getActiveMenu().menuName == "pause")
 		{
-			if (Input.GetKeyUp(KeyCode.Escape) && Application.loadedLevel != 0)		//toggles pause and timescale
+			if ((Input.GetKeyUp(KeyCode.Escape) || Input.GetKeyUp(KeyCode.Menu)) && Application.loadedLevel != 0)		//toggles pause and timescale
 			{
 				togglePause();
 				pauseMenu(pause);
