@@ -56,7 +56,7 @@ public class GridController : MonoBehaviour
 
     private void CheckForTurnEnd()
     {
-        if (encounter.turnInProgress && CheckForStaticBoard())
+        if (encounter.matchingInProgress && CheckForStaticBoard())
         {
             if (CheckMatches())
             {
@@ -64,7 +64,7 @@ public class GridController : MonoBehaviour
             }
             else
             {
-                encounter.TurnHasEnded();
+                encounter.MatchingHasEnded();
             }
         }
     }
@@ -86,7 +86,7 @@ public class GridController : MonoBehaviour
 
     public void SelectBlock(Vector3 position)
     {
-        if (CheckForStaticBoard())
+        if (encounter.turnInProgress == false)
         {
             GridPosition colPos = BlockUnderPointer(position);
             if (colPos != null)
@@ -280,6 +280,7 @@ public class GridController : MonoBehaviour
                 heightAbove--;
             }
         }
+        scoreTracker.AddNewMatches();
         return matches;
     }
 

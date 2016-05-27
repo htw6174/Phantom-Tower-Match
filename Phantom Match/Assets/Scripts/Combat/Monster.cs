@@ -10,6 +10,9 @@ public class Monster : MonoBehaviour {
     public int turnsStunned = 0;
     public int attackDamage;
 
+    public Animation deathAnimation;
+    public float deathDuration;
+
     void Start()
     {
         encounter = GameObject.FindGameObjectWithTag(Tags.encounterManager).GetComponent<EncounterManager>();
@@ -18,6 +21,7 @@ public class Monster : MonoBehaviour {
 
     public void TakeDamage(int damage)
     {
+        //Debug.Log(name + " took " + damage + " damage!");
         currentHealth -= damage;
     }
 

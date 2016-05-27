@@ -41,10 +41,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   encounter: {fileID: 0}
-  maxHealth: 100
-  currentHealth: 0
+  maxHealth: 1000
+  currentHealth: 1000
   isStunned: 0
   turnsStunned: 0
+  attackDamage: 1
+  deathAnimation: {fileID: 0}
+  deathDuration: 1
 --- !u!212 &21293596
 SpriteRenderer:
   m_ObjectHideFlags: 1
