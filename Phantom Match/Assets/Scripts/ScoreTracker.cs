@@ -94,7 +94,7 @@ public class ScoreTracker : MonoBehaviour {
         for (int i = 0; i < count; i++)
         {
             //Debug.Log("Added " + type + " match for " + damage + " damage!");
-            encounter.matchesThisTurn.Add(new Match(type, damage, stun));
+            encounter.AddMatch(new Match(type, damage, stun));
         }
     }
 

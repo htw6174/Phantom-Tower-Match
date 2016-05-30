@@ -10,11 +10,17 @@ public class EncounterManager : MonoBehaviour {
     public Slider playerHealth;
     public Slider enemyHealth;
 
+    public Text comboCounter;
+    public Text stunCounter;
+
     public bool matchingInProgress = true;
     public bool combatInProgress = false;
     public bool turnInProgress = true;
 
-    public List<Match> matchesThisTurn;
+    private float combo = 1;
+    private float stunChance = 0f;
+
+    private List<Match> matchesThisTurn;
 
     public Player player;
     public Monster activeMonster; //Instantiated prefab from encounterMonsters
@@ -30,6 +36,45 @@ public class EncounterManager : MonoBehaviour {
         SpawnNextEncounterMonster(activeMonsterIndex);
         UpdatePlayerUI();
         UpdateMonsterUI();
+        UpdateComboUI();
+        UpdateStunUI();
+    }
+
+    public void AddMatch(Match match)
+    {
+        matchesThisTurn.Add(match);
+        IncreaseCombo();
+        IncreaseStun(match.stunChance);
+    }
+    
+    //Increases the player combo 
+    private void IncreaseCombo()
+    {
+        ToggleComboUI(true);
+        combo += 0.1f;
+        UpdateComboUI();
+    }
+
+    private void ResetCombo()
+    {
+        combo = 1;
+        UpdateComboUI();
+    }
+
+    private void IncreaseStun(float stun)
+    {
+        if (stun > 0f)
+        {
+            ToggleStunUI(true);
+            stunChance += stun;
+            UpdateStunUI();
+        }
+    }
+
+    private void ResetStun()
+    {
+        stunChance = 0f;
+        UpdateStunUI();
     }
 
     public void TurnHasStarted()
@@ -67,7 +112,10 @@ public class EncounterManager : MonoBehaviour {
     private void TurnHasEnded()
     {
         //tell GameController to save the game
-
+        ResetCombo();
+        ResetStun();
+        ToggleComboUI(false);
+        ToggleStunUI(false);
         turnInProgress = false;
     }
 
@@ -76,23 +124,21 @@ public class EncounterManager : MonoBehaviour {
         Debug.Log("Casting " + matchesThisTurn.Count + " spells...");
         WaitForSeconds animationDelay = new WaitForSeconds(timeBetweenSpells);
 
-        float totalStunChance = 0f;
 
         foreach (Match match in matchesThisTurn)
         {
             player.CastSpell(match.type);
             yield return animationDelay;
-            DealDamageToMonster(match.damage);
-            totalStunChance += match.stunChance;
+            DealDamageToMonster((int)((float)match.damage * combo));
         }
-        DealStunToMonster(totalStunChance);
+        DealStunToMonster(stunChance);
         MonsterCombatPhase();
     }
 
     private void MonsterCombatPhase()
     {
         bool monsterDead = CheckForMonsterDeath();
-        if (monsterDead == false && activeMonster.isStunned == false) //Encounter manager should track and decrement monster stun
+        if (monsterDead == false && activeMonster.IsStunned == false) //Encounter manager should track and decrement monster stun
         {
             DealDamageToPlayer();
             CheckForPlayerDeath();
@@ -106,9 +152,12 @@ public class EncounterManager : MonoBehaviour {
     /// <param name="damage"></param>
     public void DealDamageToPlayer()
     {
-        int damage = activeMonster.attackDamage;
-        player.TakeDamage(damage);
-        UpdatePlayerUI();
+        if(activeMonster.IsStunned == false)
+        {
+            int damage = activeMonster.attackDamage;
+            player.TakeDamage(damage);
+            UpdatePlayerUI();
+        }
     }
 
     /// <summary>
@@ -127,7 +176,19 @@ public class EncounterManager : MonoBehaviour {
     /// <param name="stun"></param>
     public void DealStunToMonster(float totalStunChance)
     {
-        //Gotta figure out the calculations for this on paper
+        if (activeMonster.IsStunned == false)
+        {
+            Debug.Log(totalStunChance + "% chance to stun");
+            float roll = Random.Range(0.01f, 1f);
+            int stunCounter = 0;
+            while (totalStunChance > roll)
+            {
+                stunCounter++;
+                totalStunChance /= 2;
+            }
+            Debug.Log("Stunned for " + stunCounter + " turns");
+            activeMonster.TakeStun(stunCounter);
+        }
     }
 
     /// <summary>
@@ -164,6 +225,7 @@ public class EncounterManager : MonoBehaviour {
         {
             //Tell gameController the player has won the encounter
             Debug.Log("You won the encounter!");
+            gameController.Restart();
         }
         else
         {
@@ -186,5 +248,26 @@ public class EncounterManager : MonoBehaviour {
         enemyHealth.minValue = 0;
         enemyHealth.maxValue = activeMonster.maxHealth;
         enemyHealth.value = activeMonster.currentHealth;
+    }
+
+    //Called every time a set of matches is made
+    private void UpdateComboUI()
+    {
+        comboCounter.text = string.Format("x{0:F2}", combo);
+    }
+
+    private void UpdateStunUI()
+    {
+        stunCounter.text = string.Format("{0:F2}%", stunChance);
+    }
+
+    private void ToggleComboUI(bool state)
+    {
+        comboCounter.enabled = state;
+    }
+
+    private void ToggleStunUI(bool state)
+    {
+        stunCounter.enabled = state;
     }
 }
