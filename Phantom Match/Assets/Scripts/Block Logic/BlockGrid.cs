@@ -24,7 +24,7 @@ public class BlockGrid
     }
 
     /// <summary>
-    /// Returns the Block at position; Returns new block with BlockType of 'none' if out of range
+    /// Returns the Block at position; returns null if out of range
     /// </summary>
     /// <param name="x">Horizontal postion</param>
     /// <param name="y">Vertical position</param>

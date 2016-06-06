@@ -371,7 +371,9 @@ public class GridController : MonoBehaviour
         {
             for (int y = 0; y < height; y++)
             {
-                SetBlock(x, y, RandomBlockInstance());
+                BlockType downType = GetBlock(x, y - 1) != null ? GetBlock(x, y - 1).type : BlockType.None;
+                BlockType leftType = GetBlock(x - 1, y) != null ? GetBlock(x - 1, y).type : BlockType.None;
+                SetBlock(x, y, RandomBlockInstance(downType, leftType));
                 GetBlock(x, y).SetPosition(x, y);
             }
         }
@@ -398,9 +400,14 @@ public class GridController : MonoBehaviour
         return newCollider;
     }
 
-    private Block RandomBlockInstance()
+    private Block RandomBlockInstance(BlockType disallowed1 = BlockType.None, BlockType disallowed2 = BlockType.None)
     {
-        Block newBlock = Instantiate(blockPrefabs[Random.Range(0, blockPrefabs.Length)]).GetComponent<Block>();
+        BlockType rolledType = BlockTypeFunctions.GetRandomBlockType();
+        while (rolledType == disallowed1 || rolledType == disallowed2)
+        {
+            rolledType = BlockTypeFunctions.GetRandomBlockType();
+        }
+        Block newBlock = Instantiate(blockPrefabs[(int)rolledType]).GetComponent<Block>();
         newBlock.transform.SetParent(transform);
         return newBlock;
     }

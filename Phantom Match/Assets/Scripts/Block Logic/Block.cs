@@ -17,6 +17,11 @@ public class Block : MonoBehaviour {
         animator = GetComponent<Animator>();
     }
 
+    void FixedUpdate()
+    {
+        //Move block falling transformation into here
+    }
+
     public void SetPosition(int newX, int newY)
     {
         gridPos.x = newX;

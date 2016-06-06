@@ -746,10 +746,11 @@ MonoBehaviour:
   blockVanishTime: 0.3
   blockColliderPrefab: {fileID: 139432, guid: e0ea99b57e2d4ab43820fa6bb2b119ed, type: 2}
   blockPrefabs:
-  - {fileID: 132778, guid: d92e87f6c41591d40b649dd98961483d, type: 2}
-  - {fileID: 150420, guid: ef25f983f22aa5742b6a10f5a1d64794, type: 2}
+  - {fileID: 142500, guid: 86cf73ef0fd0f774193e3f06c8249e00, type: 2}
   - {fileID: 192724, guid: 6a0b2c170e6cbab4389f7941c2ef63e0, type: 2}
+  - {fileID: 150420, guid: ef25f983f22aa5742b6a10f5a1d64794, type: 2}
   - {fileID: 142500, guid: 62b6052b7d8ee60478cba1026e91ac49, type: 2}
+  - {fileID: 132778, guid: d92e87f6c41591d40b649dd98961483d, type: 2}
   scoreTracker: {fileID: 826268117}
 --- !u!4 &427883971
 Transform:

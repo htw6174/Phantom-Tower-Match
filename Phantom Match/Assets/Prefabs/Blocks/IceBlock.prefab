@@ -12,7 +12,7 @@ GameObject:
   - 114: {fileID: 11431474}
   - 95: {fileID: 9597150}
   m_Layer: 0
-  m_Name: BlueBlock
+  m_Name: IceBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
